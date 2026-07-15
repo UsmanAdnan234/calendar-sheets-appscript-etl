@@ -74,7 +74,7 @@ Click Add.
 
 # Step 5 — Configure the Date Range
 
-Find the CONFIG section.
+Find the CONFIG section. You can update the start and end date till which you want to view your call events by changing dates in Line Number 83 and 84.
 
 Update:
 
