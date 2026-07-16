@@ -71,9 +71,9 @@ var CONFIG = {
   ],
 
   ROUND_RULES: [
-    { pattern: /\b(\d{1,2})(?:st|nd|rd|th)\s*call\b/i, extract: function (m) { return m[1]; } },
-    { pattern: /\bround\s*(\d{1,2})\b/i, extract: function (m) { return m[1]; } },
-    { pattern: /\bfinal\b/i, extract: function () { return 'Final'; } }
+  { pattern: /\b(\d{1,2})(?:st|nd|rd|th)\s*(?:call|interview|round|screening)\b/i, extract: function (m) { return m[1]; } },
+  { pattern: /\bround\s*(\d{1,2})\b/i, extract: function (m) { return m[1]; } },
+  { pattern: /\bfinal\b/i, extract: function () { return 'Final'; } }
   ],
 
   UNSPECIFIED: 'Unspecified',
@@ -96,6 +96,7 @@ function getEventsInManualRange() {
       timeMax: new Date(CONFIG.MANUAL_SYNC_END_DATE).toISOString(),
       singleEvents: true,
       showDeleted: true, // so cancelled events in range are still reported
+      orderBy: 'startTime',
       maxResults: 250,
       pageToken: pageToken || undefined
     };
