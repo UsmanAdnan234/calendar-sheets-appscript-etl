@@ -67,7 +67,8 @@ var CONFIG = {
   EXCLUSION_KEYWORDS: [
     'assisting', 'assessments', 'assessment', 'curinos', 'uhy',
     'meeting', 'meetings', 'busy', 'focus time', 'block', 'hold',
-    'ooo', 'out of office', 'vacation', 'holiday'
+    'ooo', 'out of office', 'vacation', 'holiday', 'blocked', 'daily',
+    'stand-up', 'standup', 'stand up', 'sprint', 'scrum'
   ],
 
   ROUND_RULES: [
