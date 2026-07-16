@@ -108,13 +108,7 @@ function getEventsInManualRange() {
 }
 
 function buildDescriptionHaystack(rawEvent) {
-  var chunks = [rawEvent.location || '', rawEvent.description || ''];
-  if (rawEvent.conferenceData && rawEvent.conferenceData.entryPoints) {
-    rawEvent.conferenceData.entryPoints.forEach(function (ep) {
-      chunks.push(ep.uri || '', ep.label || '');
-    });
-  }
-  return chunks.join(' ');
+  return rawEvent.description || '';
 }
 
 function normalizeEvent(rawEvent) {
