@@ -249,11 +249,49 @@ function appendBlankRow(sheet, colMap) {
  * Remarks / Taken are preserved by Event Id for anything still present.
  * Cancelled events are simply not re-added. Excluded events are dropped.
  */
+function getOrCreateManualDataStore() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var store = ss.getSheetByName('ManualDataStore');
+  if (!store) {
+    store = ss.insertSheet('ManualDataStore');
+    store.appendRow(['Event Id', 'Verified Lead', 'Remarks', 'Taken']);
+    store.hideSheet();
+  }
+  return store;
+}
+
+function loadManualDataStore(store) {
+  var lastRow = store.getLastRow();
+  var map = {};
+  if (lastRow > 1) {
+    var values = store.getRange(2, 1, lastRow - 1, 4).getValues();
+    values.forEach(function (row) {
+      if (row[0]) {
+        map[row[0]] = { verifiedLead: row[1], remarks: row[2], taken: row[3] };
+      }
+    });
+  }
+  return map;
+}
+
+function saveManualDataStore(store, map) {
+  var lastRow = store.getLastRow();
+  if (lastRow > 1) {
+    store.deleteRows(2, lastRow - 1);
+  }
+  Object.keys(map).forEach(function (eventId) {
+    var v = map[eventId];
+    store.appendRow([eventId, v.verifiedLead, v.remarks, v.taken]);
+  });
+}
+
+
 function rebuildSheetForDateRange(normalizedEvents) {
   var sheet = getOrCreateSheet();
   var colMap = getColumnIndexMap(sheet);
+  var store = getOrCreateManualDataStore();
+  var manualByEventId = loadManualDataStore(store);
 
-  var manualByEventId = {};
   var lastRow = sheet.getLastRow();
   if (lastRow > 1) {
     var existing = sheet.getRange(2, 1, lastRow - 1, sheet.getLastColumn()).getValues();
@@ -285,6 +323,8 @@ function rebuildSheetForDateRange(normalizedEvents) {
       sheet.getRange(newRow, colMap['Taken']).setValue(preserved.taken);
     }
   });
+
+  saveManualDataStore(store, manualByEventId);
 }
 
 // =============================================================
