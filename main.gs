@@ -74,7 +74,8 @@ var CONFIG = {
   ROUND_RULES: [
   { pattern: /\b(\d{1,2})(?:st|nd|rd|th)\s*(?:call|interview|round|screening)\b/i, extract: function (m) { return m[1]; } },
   { pattern: /\bround\s*(\d{1,2})\b/i, extract: function (m) { return m[1]; } },
-  { pattern: /\bfinal\b/i, extract: function () { return 'Final'; } }
+  { pattern: /\bfinal\b/i, extract: function () { return 'Final'; } },
+  { pattern: /\b(\d{1,2})(?:st|nd|rd|th)\b/i, extract: function (m) { return m[1]; } }
   ],
 
   UNSPECIFIED: 'Unspecified',
