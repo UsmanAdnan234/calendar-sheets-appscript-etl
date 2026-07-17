@@ -68,7 +68,7 @@ var CONFIG = {
     'assisting', 'assessments', 'assessment', 'curinos', 'uhy',
     'meeting', 'meetings', 'busy', 'focus time', 'block', 'hold',
     'ooo', 'out of office', 'vacation', 'holiday', 'blocked', 'daily',
-    'stand-up', 'standup', 'stand up', 'sprint', 'scrum'
+    'stand-up', 'standup', 'stand up', 'sprint', 'scrum', 'meet','with'
   ],
 
   ROUND_RULES: [
@@ -82,8 +82,8 @@ var CONFIG = {
   CALENDAR_ID: 'primary',
 
   // <<< EDIT THESE TWO LINES to choose your date range >>>
-  MANUAL_SYNC_START_DATE: '2026-07-13',
-  MANUAL_SYNC_END_DATE: '2026-07-20'
+  MANUAL_SYNC_START_DATE: '2026-06-01',
+  MANUAL_SYNC_END_DATE: '2026-06-30'
 };
 
 // =============================================================
